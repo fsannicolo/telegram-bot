@@ -46,12 +46,14 @@ async def no_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     except requests.exceptions.RequestException as e:
         print(f'Si è verificato un errore: {e}')  
+    except json.JSONDecodeError:
+        print("Errore nella decodifica JSON")
 
 # gestione delle risposte
 def handle_response(text: str) -> str:
-    if 'ciao' in text.lower():
+    if 'ciao' in text.lower():  # saluto
         return 'Ehilà!'
-    elif 'adoro' in text.lower() or 'mi piace' in text.lower():
+    elif 'adoro' in text.lower() or 'mi piace' in text.lower():     # reaction
         return 'love'
     else:
         return 'Non ho capito cosa devo fare'
@@ -62,7 +64,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     # testo del messaggio ricevuto
     text = update.message.text
-
     print(f'Utente {update.message.chat.id} in {message_type}: "{text}"')
 
     risposta = handle_response(text)
