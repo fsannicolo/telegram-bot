@@ -1,5 +1,9 @@
 # Marconi Telegram Bot
 
+## How to start
+This project requires some libraries to work:
+`pip install -r requirements.txt`
+
 ## Commands
 - `/start`
 - `/help` 
